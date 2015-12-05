@@ -11,11 +11,14 @@ public:
 	{
 		CircleShape::setPosition(Constants::start_x, Constants::start_y);
 		CircleShape::setRadius(Constants::BALLSIZE);
-		velocity.x = 5;
-		velocity.y = 1;
+		velocity.x = 3;
+		velocity.y = 5;
+
 	}
 	void update();
-	
+	bool wallCollisionCheck();
+	void handleWallCollision();
 	~Ball();
 };
+
 

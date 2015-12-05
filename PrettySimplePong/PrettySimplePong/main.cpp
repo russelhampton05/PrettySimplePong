@@ -9,7 +9,7 @@
 int main()
 { 
 	//std::vector<
-	sf::RenderWindow window(sf::VideoMode(800, 600), "PSPong");
+	sf::RenderWindow window(sf::VideoMode(Constants::windowXSize, Constants::windowYSize), "PSPong");
 	time_t startTime;
 	time_t endTime;
 	std::vector<sf::Drawable*> drawnObjects;
