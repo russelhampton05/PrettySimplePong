@@ -9,9 +9,9 @@ private:
 public:
 	Ball()
 	{
-		CircleShape::setPosition(Constants::start_x, Constants::start_y);
+		CircleShape::setPosition(Constants::START_X, Constants::START_Y);
 		CircleShape::setRadius(Constants::BALLSIZE);
-		velocity.x = 3;
+		velocity.x = 8;
 		velocity.y = 5;
 
 	}

@@ -4,6 +4,7 @@
 #include <vector>
 #include "IUpdatable.h"
 #include "Ball.h"
+#include "Paddle.h"
 //Define these in ini file later//
 
 int main()
@@ -15,8 +16,13 @@ int main()
 	std::vector<sf::Drawable*> drawnObjects;
 	std::vector<IUpdatable*> updateObjects;
 	Ball newBall;
+	Paddle newPaddle;
 	drawnObjects.push_back(&newBall);
+	drawnObjects.push_back(&newPaddle);
 	updateObjects.push_back(&newBall);
+	updateObjects.push_back(&newPaddle);
+
+
 	//GUI loop
 	while (window.isOpen())
 	{

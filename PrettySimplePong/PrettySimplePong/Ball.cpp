@@ -16,15 +16,35 @@ void Ball::handleWallCollision()
 {
 	int x = getPosition().x;
 	int y = getPosition().y;
-
-	if (x - Constants::BALLSIZE < 0 || x + Constants::BALLSIZE > Constants::windowXSize)
+	//all four of these events will have to go into an observer pattern so a score ticker can be prompted
+	if (x - Constants::BALLSIZE +8< 0)
 	{
-		velocity.x = velocity.x*-1;
+		if (velocity.x < 0)
+		{
+			velocity.x = velocity.x*-1;
+		}
+	}
+	else if (x + Constants::BALLSIZE + 8 > Constants::windowXSize)
+	{
+		if (velocity.x > 0)
+		{
+			velocity.x = velocity.x*-1;
+		}
 	}
 	
-	if (y - Constants::BALLSIZE < 0 || y + Constants::BALLSIZE > Constants::windowYSize)
+	if (y - Constants::BALLSIZE +8 < 0)
 	{
-		velocity.y = velocity.y * -1;
+		if (velocity.y < 0)
+		{
+			velocity.y = velocity.y * -1;
+		}
+	}
+	else if (y + Constants::BALLSIZE + 8 > Constants::windowYSize)
+	{
+		if (velocity.y > 0)
+		{
+			velocity.y = velocity.y * -1;
+		}
 	}
 }
 
