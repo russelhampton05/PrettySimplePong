@@ -14,6 +14,7 @@ namespace Constants
 	const int PADDLE_A = 10;
 	const int PADDLE_V = 30;
 	const int PADDLE_F = 7;
+	const int EMPTY = -9999;
 }
 
 #endif
