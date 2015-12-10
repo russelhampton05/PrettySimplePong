@@ -1,14 +1,14 @@
 #pragma once
 #include "ICommand.h"
 class IMovable;
-class MoveUpCommand : public ICommand
+class MoveLeftCommand : public ICommand
 {
-
 public:
+	MoveLeftCommand();
+	~MoveLeftCommand();
 
-	MoveUpCommand();
-	~MoveUpCommand();
 
 	void execute(IMovable&);
+
 };
 

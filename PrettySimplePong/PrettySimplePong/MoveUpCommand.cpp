@@ -1,5 +1,5 @@
 #include "MoveUpCommand.h"
-#include "IUpdatable.h"
+#include "IMovable.h"
 
 MoveUpCommand::MoveUpCommand()
 {
@@ -10,7 +10,7 @@ MoveUpCommand::~MoveUpCommand()
 {
 }
 
-void MoveUpCommand::execute(IUpdatable& gameObject)
+void MoveUpCommand::execute(IMovable& gameObject)
 {
 	gameObject.moveUp();
 }

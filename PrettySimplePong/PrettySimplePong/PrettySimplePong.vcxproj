@@ -89,9 +89,13 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="ICommand.cpp" />
+    <ClCompile Include="IMovable.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="IUpdatable.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveDownCommand.cpp" />
+    <ClCompile Include="MoveLeftCommand.cpp" />
+    <ClCompile Include="MoveRightCommand.cpp" />
     <ClCompile Include="MoveUpCommand.cpp" />
     <ClCompile Include="Paddle.cpp" />
   </ItemGroup>
@@ -99,8 +103,12 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="ICommand.h" />
+    <ClInclude Include="IMovable.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="IUpdatable.h" />
+    <ClInclude Include="MoveDownCommand.h" />
+    <ClInclude Include="MoveLeftCommand.h" />
+    <ClInclude Include="MoveRightCommand.h" />
     <ClInclude Include="MoveUpCommand.h" />
     <ClInclude Include="Paddle.h" />
   </ItemGroup>

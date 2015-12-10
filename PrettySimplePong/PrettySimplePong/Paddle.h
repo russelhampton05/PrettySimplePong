@@ -1,6 +1,8 @@
 #pragma once
 #include "IUpdatable.h"
-class Paddle : public IUpdatable, public sf::RectangleShape
+#include "IMovable.h"
+
+class Paddle : public IUpdatable, public IMovable, public sf::RectangleShape
 {
 
 private:
@@ -16,9 +18,15 @@ public:
 		paddleSize.x = Constants::PADDLE_WIDTH;
 		paddleSize.y = Constants::PADDLE_LENGTH;
 		setSize(paddleSize);
+		maxVelocity.x = 15;
+		maxVelocity.y = 15;
 		setPosition((Constants::PADDLE_WIDTH / 2) + 10, (Constants::PADDLE_LENGTH / 2) + 2);
 	}
 	~Paddle();
 	void update();
+	void moveUp();
+	void moveDown();
+	void moveLeft();
+	void moveRight();
 };
 

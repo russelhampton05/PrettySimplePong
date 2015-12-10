@@ -1,10 +1,10 @@
 #pragma once
-class IUpdatable;
+class IMovable;
 class ICommand
 {
 public:
 	ICommand();
 	~ICommand();
-	virtual void execute(IUpdatable&) = 0;
+	virtual void execute(IMovable&) = 0;
 };
 
