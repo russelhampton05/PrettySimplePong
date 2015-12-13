@@ -29,49 +29,56 @@ bool Ball::handleWallCollision()
 
 	//check to see if next velocity tick will place ball out of bounds and instead update as if the bounce happened
 	//between updates
-	if (((x - Constants::BALLSIZE) + velocity.x)< -8)
+	if (((x - Constants::BALLSIZE) + velocity.x)< -10)
 	{
 		collisionOccured = true;
+		Notify(Constants::WallHit::LEFT);
 		if (velocity.x < 0)
 		{
 			velocity.x = velocity.x*-1;
 		}
-		
-		peekX = (velocity.x) - (x - Constants::BALLSIZE)-8;
+		peekX = ((velocity.x) - (x - Constants::BALLSIZE)) + Constants::BALLSIZE -10; //-10 because SFML seems to draw the window and the drawing space a bit off
 		peekY = y;
 	}
 	else if ((x + velocity.x + Constants::BALLSIZE) > Constants::windowXSize)
 	{
 		collisionOccured = true;
+		Notify(Constants::WallHit::RIGHT);
 		if (velocity.x > 0)
 		{
 			velocity.x = velocity.x*-1;
 		}
 
-		peekX = Constants::windowXSize - ((velocity.x) - (Constants::windowXSize - (x + Constants::BALLSIZE)));
+		peekX = Constants::windowXSize + ((velocity.x) + (Constants::windowXSize - (x + Constants::BALLSIZE))) - Constants::BALLSIZE;
 		peekY = y;
+	
+	
 	}
 	
-	else if (y + velocity.y - Constants::BALLSIZE< 0)
+	else if (y + velocity.y - Constants::BALLSIZE<- 10 )
 	{
 		collisionOccured = true;
+		Notify(Constants::WallHit::UP);
 		if (velocity.y < 0)
 		{
 			velocity.y = velocity.y * -1;
 		}
 		peekX = x;
-		peekY = (velocity.y) - (y - Constants::BALLSIZE);
-		std::cout << "PEEK Y" << peekY << "\n";
+		peekY = (velocity.y) - (y - Constants::BALLSIZE) + Constants::BALLSIZE - 10;
+	
+		
 	}
 	else if (y + velocity.y + Constants::BALLSIZE > Constants::windowYSize)
 	{
 		collisionOccured = true;
+		Notify(Constants::WallHit::DOWN);
 		if (velocity.y > 0)
 		{
 			velocity.y = velocity.y * -1;
 		}
 		peekX = x;
-		peekY = Constants::windowYSize - ((velocity.y) - (Constants::windowYSize - (y + Constants::BALLSIZE)));
+		peekY = Constants::windowYSize + ((velocity.y) + (Constants::windowYSize - (y + Constants::BALLSIZE))) - Constants::BALLSIZE;
+	
 	}
 
 	if (collisionOccured)
@@ -80,5 +87,13 @@ bool Ball::handleWallCollision()
 	}
 
 	return collisionOccured;
+}
+
+void Ball::Notify(Constants::WallHit hit)
+{
+	for (auto iterator = wallObservers.begin(); iterator != wallObservers.end(); iterator++)
+	{
+		(*iterator)->onNotify(hit);
+	}
 }
 

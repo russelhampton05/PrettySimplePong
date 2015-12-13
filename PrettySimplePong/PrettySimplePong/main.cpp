@@ -10,7 +10,7 @@
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
 #include "InputHandler.h"
-
+#include "ScoreBoard.h"
 int main()
 { 
 	//Have not yet decided whether to move initialization to somewhere not here
@@ -34,11 +34,16 @@ int main()
 
 	Ball newBall;
 	Paddle newPaddle;
+	ScoreBoard scoreLeft;
+	newBall.addWallObserver(scoreLeft);
 	drawnObjects.push_back(&newBall);
 	drawnObjects.push_back(&newPaddle);
-	updateObjects.push_back(&newBall);  
+	drawnObjects.push_back(&scoreLeft.getLeftScore());
+	drawnObjects.push_back(&scoreLeft.getRightScore());
+	updateObjects.push_back(&newBall);
+	updateObjects.push_back(&scoreLeft);
 	updateObjects.push_back(&newPaddle);
-
+	
 
 	//GUI loop
 	while (window.isOpen())
@@ -53,6 +58,7 @@ int main()
 				window.close();
 		}
 		window.clear(sf::Color::Blue);
+	
 		//Input
 
 		ICommand* command = nullptr;

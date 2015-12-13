@@ -19,7 +19,7 @@ public:
 		paddleSize.y = Constants::PADDLE_LENGTH;
 		setSize(paddleSize);
 		maxVelocity.x = 15;
-		maxVelocity.y = 15;
+		maxVelocity.y = 15; // make these constants
 		setPosition((Constants::PADDLE_WIDTH / 2) + 10, (Constants::PADDLE_LENGTH / 2) + 2);
 	}
 	~Paddle();

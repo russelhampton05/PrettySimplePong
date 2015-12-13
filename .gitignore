@@ -68,3 +68,9 @@ PrettySimplePong/Release/PrettySimplePong.exe
 PrettySimplePong/Release/PrettySimplePong.pdb
 PrettySimplePong/PrettySimplePong.v12.suo
 PrettySimplePong/PrettySimplePong.sdf
+PrettySimplePong/PrettySimplePong/Release/IMovable.obj
+PrettySimplePong/PrettySimplePong/Release/IWallObserver.obj
+PrettySimplePong/PrettySimplePong/Release/MoveDownCommand.obj
+PrettySimplePong/PrettySimplePong/Release/MoveLeftCommand.obj
+PrettySimplePong/PrettySimplePong/Release/MoveRightCommand.obj
+PrettySimplePong/PrettySimplePong/Release/ScoreBoard.obj
