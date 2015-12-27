@@ -7,9 +7,15 @@
 #include "Paddle.h"
 #include "MoveDownCommand.h"
 #include "MoveUpCommand.h"
+#include "MoveRDCommand.h"
+#include "MoveLDCommand.h"
+#include "MoveLUCommand.h"
+#include "MoveRUCommand.h"
 #include "MoveLeftCommand.h"
+#include "NoCommand.h"
 #include "MoveRightCommand.h"
 #include "InputHandler.h"
+#include"CollisionHandler.h"
 #include "ScoreBoard.h"
 int main()
 { 
@@ -22,29 +28,46 @@ int main()
 	std::vector<sf::Drawable*> drawnObjects;
 	std::vector<IUpdatable*> updateObjects;
 
+
 	MoveUpCommand moveUpCommand;
 	MoveDownCommand moveDownCommand;
 	MoveLeftCommand moveLeftCommand;
 	MoveRightCommand moveRightCommand;
+	MoveRDCommand moveRightDownCommand;
+	MoveLDCommand moveLeftDownCommand;
+	MoveRUCommand moveRightUpCommand;
+	MoveLUCommand moveLeftUpCommand;
+	NoCommand noCommand;
+	CollisionHandler collisionHandler;
+
 	InputHandler inputHandler;
 	inputHandler.setMoveDown(&moveDownCommand);
 	inputHandler.setMoveUp(&moveUpCommand);
 	inputHandler.setMoveLeft(&moveLeftCommand);
 	inputHandler.setMoveRight(&moveRightCommand);
+	inputHandler.setMoveLeftUp(&moveLeftUpCommand);
+	inputHandler.setMoveLeftDown(&moveLeftDownCommand);
+	inputHandler.setMoveRightUp(&moveRightUpCommand);
+	inputHandler.setMoveRightDown(&moveRightDownCommand);
+	inputHandler.setNoCommand(&noCommand);
 
 	Ball newBall;
-	Paddle newPaddle;
-	ScoreBoard scoreLeft;
-	newBall.addWallObserver(scoreLeft);
+	newBall.setCollisionHandler(collisionHandler);
+	Paddle paddle1(Constants::WallSide::RIGHT);
+	paddle1.setCollisionHandler(collisionHandler);
+//	Paddle paddle2(Constants::WallSide::LEFT);
+	ScoreBoard scoreBoard;
+	newBall.addWallObserver(scoreBoard);
 	drawnObjects.push_back(&newBall);
-	drawnObjects.push_back(&newPaddle);
-	drawnObjects.push_back(&scoreLeft.getLeftScore());
-	drawnObjects.push_back(&scoreLeft.getRightScore());
+	drawnObjects.push_back(&paddle1);
+	drawnObjects.push_back(&scoreBoard.getLeftScore());
+	drawnObjects.push_back(&scoreBoard.getRightScore());
 	updateObjects.push_back(&newBall);
-	updateObjects.push_back(&scoreLeft);
-	updateObjects.push_back(&newPaddle);
+	updateObjects.push_back(&scoreBoard);
+	updateObjects.push_back(&paddle1);
 	
-
+	collisionHandler.registerBall(newBall);
+	collisionHandler.registerPaddle(paddle1);
 	//GUI loop
 	while (window.isOpen())
 	{
@@ -57,18 +80,20 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		window.clear(sf::Color::Blue);
-	
+		 window.clear(sf::Color::Blue);
+
 		//Input
 
 		ICommand* command = nullptr;
 		command = inputHandler.handleInput();
 		if (command != nullptr)
 		{
-			command->execute(newPaddle);
+			command->execute(paddle1); 
 		}
+	
 
 		//Drawing
+		
 		for (auto drawnObject = drawnObjects.begin(); drawnObject != drawnObjects.end(); drawnObject++)
 		{
 			window.draw(**drawnObject);

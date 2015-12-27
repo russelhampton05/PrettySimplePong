@@ -30,13 +30,13 @@ void ScoreBoard::update()
 	//possibly end game condition in the future
 }
 
-void ScoreBoard::onNotify(Constants::WallHit side)
+void ScoreBoard::onNotify(Constants::WallSide side)
 {
-	if (side == Constants::WallHit::LEFT)
+	if (side == Constants::WallSide::LEFT)
 	{
 		rightCount++;
 	}
-	if (side == Constants::WallHit::RIGHT)
+	if (side == Constants::WallSide::RIGHT)
 	{
 		leftCount++;
 	}

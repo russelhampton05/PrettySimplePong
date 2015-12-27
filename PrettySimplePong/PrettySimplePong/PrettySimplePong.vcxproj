@@ -87,7 +87,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArtificalPaddle.cpp" />
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="CollisionHandler.cpp" />
+    <ClCompile Include="GameObjects.cpp" />
+    <ClCompile Include="IBallObserver.cpp" />
     <ClCompile Include="ICommand.cpp" />
     <ClCompile Include="IMovable.cpp" />
     <ClCompile Include="InputHandler.cpp" />
@@ -95,24 +99,38 @@
     <ClCompile Include="IWallObserver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveDownCommand.cpp" />
+    <ClCompile Include="MoveLDCommand.cpp" />
     <ClCompile Include="MoveLeftCommand.cpp" />
+    <ClCompile Include="MoveLUCommand.cpp" />
+    <ClCompile Include="MoveRDCommand.cpp" />
     <ClCompile Include="MoveRightCommand.cpp" />
+    <ClCompile Include="MoveRUCommand.cpp" />
     <ClCompile Include="MoveUpCommand.cpp" />
+    <ClCompile Include="NoCommand.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArtificalPaddle.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="CollisionHandler.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="GameObjects.h" />
+    <ClInclude Include="IBallObserver.h" />
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="IUpdatable.h" />
     <ClInclude Include="IWallObserver.h" />
     <ClInclude Include="MoveDownCommand.h" />
+    <ClInclude Include="MoveLDCommand.h" />
     <ClInclude Include="MoveLeftCommand.h" />
+    <ClInclude Include="MoveLUCommand.h" />
+    <ClInclude Include="MoveRDCommand.h" />
     <ClInclude Include="MoveRightCommand.h" />
+    <ClInclude Include="MoveRUCommand.h" />
     <ClInclude Include="MoveUpCommand.h" />
+    <ClInclude Include="NoCommand.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="ScoreBoard.h" />
   </ItemGroup>

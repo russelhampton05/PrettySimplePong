@@ -20,10 +20,14 @@ public:
 	
 	ScoreBoard()
 	{
-		if (!textFont.loadFromFile("BAUHS93.TTF"))
+		if (!textFont.loadFromFile("timesbd.ttf"))
 		{
-			std::cout << "Font failed to load, text won't appear \n";
+			if (!textFont.loadFromFile("C:\Windows\Fonts\Times New Roman\timesbd.ttf"))
+			{
+				std::cout << "Failed to load font times new roman from  file timesbd.ttf \n Please put the in the same folder as the .exe or in C:\Windows\Fonts";
+			}
 		}
+	
 		initializeText(leftScore, -10);
 		initializeText(rightScore, 10);
 		leftCount = 0;
@@ -42,7 +46,7 @@ public:
 		return rightScore;
 	}
 
-	void onNotify(Constants::WallHit);
+	void onNotify(Constants::WallSide);
 	void update();
 };
 

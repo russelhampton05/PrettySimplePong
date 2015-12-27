@@ -24,7 +24,7 @@ _\ \ | | | | | | |_) | |  __/_
 Disclaimer:
 
 This was written using a student's copy of Visual Studio 2013 and the SFML libraries for the GUI. It is my own
-whole work. 
+whole work. This was written during my senior year of my computer science degree.
 
 
 Table of Contents:

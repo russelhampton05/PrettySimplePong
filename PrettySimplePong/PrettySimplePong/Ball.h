@@ -3,40 +3,70 @@
 #include "IUpdatable.h"
 #include <vector>
 #include "IWallObserver.h"
+#include "IBallObserver.h"
+class CollisionHandler;
+
 class Ball: public IUpdatable, public sf::CircleShape
 {
 private:
 	sf::Vector2<double> velocity;
 	std::vector<IWallObserver*> wallObservers;
-	void Notify(Constants::WallHit);
-	//Peek values are place holders so that a previous update cycle's wall collision
-	//result can be passed ahead to the next draw phase.
-	
+	std::vector<IBallObserver*> ballObservers;
+	CollisionHandler* collisionHandler;
+
+	void NotifyWallHit(Constants::WallSide);
+	void NotifyBallMove();
+	bool handleWallCollision(sf::Vector2<double>);
+	void ApplyFriction();
+	void CheckVelocities();
 public:
+
 	Ball()
 	{
+		CircleShape::setOrigin(Constants::BALLSIZE, Constants::BALLSIZE);
 		CircleShape::setPosition(Constants::START_X, Constants::START_Y);
+		
 		CircleShape::setRadius(Constants::BALLSIZE);
-		velocity.x = 10;
-		velocity.y = 4;
+		velocity.x = Constants::BALL_VELOCITY_X;
+		velocity.y = Constants::BALL_VELOCITY_Y;
 		
 	}
 	void update();
+
+	void setCollisionHandler(CollisionHandler& handler)
+	{
+		collisionHandler = &handler;
+	}
+	sf::Vector2<double> getVelocity()
+	{
+		return velocity;
+	}
+	void setVelocity(sf::Vector2<double> newVelocity)
+	{
+		velocity = newVelocity;
+	}
+	double get_Radius()
+	{
+		return getRadius();
+	}
+
 	void addWallObserver(IWallObserver& observer)
 	{
-		observer.id = wallObservers.size();
 		wallObservers.push_back(&observer);
 	}
 	void removeWallObserver(IWallObserver& observer)
 	{
 		for (auto iterator = wallObservers.begin(); iterator != wallObservers.end(); iterator++)
 		{
-			(*iterator)->id == observer.id;
-			wallObservers.erase(iterator);
+			if ((*iterator) == &observer)
+			{
+				wallObservers.erase(iterator);
+			}
 			break;
 		}
+		
 	}
-	bool handleWallCollision();
+	
 	
 	~Ball();
 };

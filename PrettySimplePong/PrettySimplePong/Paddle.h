@@ -2,31 +2,90 @@
 #include "IUpdatable.h"
 #include "IMovable.h"
 
+class CollisionHandler;
 class Paddle : public IUpdatable, public IMovable, public sf::RectangleShape
 {
-
+	struct PaddleMoving
+	{
+		bool moveUp = false;
+		bool moveDown = false;
+		bool moveLeft = false;
+		bool moveRight = false;
+		bool moveUpLeft = false;
+		bool moveUpRight = false;
+		bool moveDownLeft = false;
+		bool moveDownRight = false;
+		
+		void setFalse()
+		{
+			moveUp = false;
+			moveDown = false;
+			moveLeft = false;
+			moveRight = false;
+			moveUpLeft = false;
+			moveUpRight = false;
+			moveDownLeft = false;
+			moveDownRight = false;
+		}
+	};
+	struct PaddleBoundry 
+	{
+		Constants::WallSide side;
+		float minX;
+		float maxX;
+		float minY;
+		float maxY;
+	};
 private:
+
 	sf::Vector2<double> maxVelocity;
 	sf::Vector2<double> acceleration; 
 	sf::Vector2<double> friction;
-	//current vectory
-
 	sf::Vector2f paddleSize;
+	
+	CollisionHandler* collisionHandler;
+	PaddleBoundry boundry;
+	PaddleMoving moving;
+	void setBoundry(Constants::WallSide paddleSide);
+	void checkBoundry();
 public:
-	Paddle()
+	Paddle(Constants::WallSide paddleSide)
 	{
-		paddleSize.x = Constants::PADDLE_WIDTH;
-		paddleSize.y = Constants::PADDLE_LENGTH;
-		setSize(paddleSize);
-		maxVelocity.x = 15;
-		maxVelocity.y = 15; // make these constants
-		setPosition((Constants::PADDLE_WIDTH / 2) + 10, (Constants::PADDLE_LENGTH / 2) + 2);
+		
+		maxVelocity.x = Constants::PADDLE_VELOCITY_X;
+		maxVelocity.y = Constants::PADDLE_VELOCITY_Y;
+		
+
+		setBoundry(paddleSide);
 	}
 	~Paddle();
+
+	
+
 	void update();
 	void moveUp();
 	void moveDown();
 	void moveLeft();
 	void moveRight();
+	void moveRightDown();
+	void moveLeftDown();
+	void moveRightUp();
+	void moveLeftUp();
+	void noCommand();
+	sf::Vector2f getPaddleSize()
+	{
+		return paddleSize;
+	}
+	PaddleBoundry getBoundry()
+	{
+		return boundry;
+	}
+
+	sf::Vector2<double> getVelocity();
+
+	void setCollisionHandler(CollisionHandler& collisionHandler)
+	{
+		this->collisionHandler = &collisionHandler;
+	}
 };
 
