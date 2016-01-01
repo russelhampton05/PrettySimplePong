@@ -1,10 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 #include <thread>
-#include <vector>
-#include "IUpdatable.h"
-#include "Ball.h"
-#include "Paddle.h"
+#include "GameObjects.h"
 #include "MoveDownCommand.h"
 #include "MoveUpCommand.h"
 #include "MoveRDCommand.h"
@@ -15,20 +12,19 @@
 #include "NoCommand.h"
 #include "MoveRightCommand.h"
 #include "InputHandler.h"
-#include"CollisionHandler.h"
-#include "ScoreBoard.h"
+
 int main()
 { 
-	//Have not yet decided whether to move initialization to somewhere not here
+
 	sf::RenderWindow window(sf::VideoMode(Constants::windowXSize, Constants::windowYSize), "PSPong");
 
 	time_t startTime;
 	time_t endTime;
 
-	std::vector<sf::Drawable*> drawnObjects;
-	std::vector<IUpdatable*> updateObjects;
+	
 
-
+	//find a good way to clean this up next. This will most likely go to some sort of Menu class when the
+	//menu UI is made. There will be a menu, definitely. Maybe.
 	MoveUpCommand moveUpCommand;
 	MoveDownCommand moveDownCommand;
 	MoveLeftCommand moveLeftCommand;
@@ -39,8 +35,9 @@ int main()
 	MoveLUCommand moveLeftUpCommand;
 	NoCommand noCommand;
 	CollisionHandler collisionHandler;
-
+	
 	InputHandler inputHandler;
+	inputHandler.setID(1);
 	inputHandler.setMoveDown(&moveDownCommand);
 	inputHandler.setMoveUp(&moveUpCommand);
 	inputHandler.setMoveLeft(&moveLeftCommand);
@@ -51,23 +48,15 @@ int main()
 	inputHandler.setMoveRightDown(&moveRightDownCommand);
 	inputHandler.setNoCommand(&noCommand);
 
-	Ball newBall;
-	newBall.setCollisionHandler(collisionHandler);
-	Paddle paddle1(Constants::WallSide::RIGHT);
-	paddle1.setCollisionHandler(collisionHandler);
-//	Paddle paddle2(Constants::WallSide::LEFT);
-	ScoreBoard scoreBoard;
-	newBall.addWallObserver(scoreBoard);
-	drawnObjects.push_back(&newBall);
-	drawnObjects.push_back(&paddle1);
-	drawnObjects.push_back(&scoreBoard.getLeftScore());
-	drawnObjects.push_back(&scoreBoard.getRightScore());
-	updateObjects.push_back(&newBall);
-	updateObjects.push_back(&scoreBoard);
-	updateObjects.push_back(&paddle1);
-	
-	collisionHandler.registerBall(newBall);
-	collisionHandler.registerPaddle(paddle1);
+	GameObjects gameObjects(inputHandler);
+	gameObjects.addBall(30, 40);
+	gameObjects.addBall(40, 300);
+	gameObjects.addPlayerPaddle(Constants::LEFT, 1);
+	gameObjects.addAiPaddle(Constants::RIGHT);
+
+
+
+
 	//GUI loop
 	while (window.isOpen())
 	{
@@ -82,26 +71,25 @@ int main()
 		}
 		 window.clear(sf::Color::Blue);
 
-		//Input
-
+		
 		ICommand* command = nullptr;
 		command = inputHandler.handleInput();
 		if (command != nullptr)
 		{
-			command->execute(paddle1); 
+			gameObjects.giveCommand(inputHandler.getID(), *command);
 		}
-	
+		gameObjects.aiMakeMove();
 
 		//Drawing
-		
+		std::vector<sf::Drawable*> drawnObjects = gameObjects.getDrawables();
 		for (auto drawnObject = drawnObjects.begin(); drawnObject != drawnObjects.end(); drawnObject++)
 		{
 			window.draw(**drawnObject);
 		}
-		for (auto updateObject = updateObjects.begin(); updateObject != updateObjects.end(); updateObject++)
-		{
-			(*updateObject)->update();
-		}
+		
+		gameObjects.update();
+	
+
 		// end the current frame
 		window.display();
 		time(&endTime);
@@ -109,5 +97,6 @@ int main()
 	   
 		
 	}
+	gameObjects.deleteObjects();
 	return 0;
 }

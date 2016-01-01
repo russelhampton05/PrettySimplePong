@@ -5,18 +5,16 @@
 #include "SFML\Window\VideoMode.hpp"
 namespace Constants
 {
-	const int BALL_VELOCITY_X = 0;
-	const int BALL_VELOCITY_Y = 0;
-	const int BALL_MIN_VELOCITY = 0;
-	const int BALL_MAX_VELOCITY = 25;
+	const int BALL_VELOCITY_X = 8;
+	const int BALL_VELOCITY_Y = 2;
+	const int BALL_MIN_VELOCITY = 4;
+	const int BALL_MAX_VELOCITY = 15;
 	const float FRICTION = .04;
-	const int PADDLE_VELOCITY_X = 12;
-	const int PADDLE_VELOCITY_Y = 12;
-	const int FRAMERATE = 20;
+	const int PADDLE_VELOCITY_X = 8;
+	const int PADDLE_VELOCITY_Y = 8;
+	const int FRAMERATE = 15;
 	const int BALLSIZE = 15;
-	const int START_X = 600;
-	const int START_Y = 400;
-	const int windowXSize = sf::VideoMode::getDesktopMode().width / 2;
+	const int windowXSize = sf::VideoMode::getDesktopMode().width/3 * 2;
 	const int windowYSize = (sf::VideoMode::getDesktopMode().height / 3)*2;
 	const int PADDLE_LENGTH = 80;
 	const int PADDLE_WIDTH = 10;

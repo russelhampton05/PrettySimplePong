@@ -13,25 +13,10 @@ void Paddle::update()
 	double xVelocity = getVelocity().x;
 	double yVelocity = getVelocity().y;
 	collisionHandler->checkCollision(this);
-	/*if (moving.moveUp || moving.moveUpLeft || moving.moveUpRight)
-	{
-		yVelocity = -maxVelocity.y;
-	}
-	if (moving.moveDown || moving.moveDownLeft || moving.moveDownRight)
-	{
-		yVelocity = maxVelocity.y;
-	}
-	if (moving.moveDownLeft || moving.moveLeft || moving.moveUpLeft)
-	{
-		xVelocity = -maxVelocity.x;
-	}
-	if (moving.moveUpRight || moving.moveDownRight || moving.moveRight)
-	{
-		xVelocity = maxVelocity.x;
-	}*/
 
 	setPosition(getPosition().x + xVelocity, getPosition().y + yVelocity);
 	checkBoundry();
+	//moving.setFalse();
 }
 
 void Paddle::moveUp()
@@ -82,7 +67,6 @@ void Paddle::moveLeftUp()
 void Paddle::noCommand()
 {
 	 moving.setFalse();
-
 }
 //Paddles can go on any side, so the math will be different accordingly.
 void Paddle::setBoundry(Constants::WallSide side)

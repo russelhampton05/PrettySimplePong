@@ -46,6 +46,8 @@ private:
 	CollisionHandler* collisionHandler;
 	PaddleBoundry boundry;
 	PaddleMoving moving;
+	int id;
+
 	void setBoundry(Constants::WallSide paddleSide);
 	void checkBoundry();
 public:
@@ -61,6 +63,14 @@ public:
 	~Paddle();
 
 	
+	void setID(int id)
+	{
+		this->id = id;
+	}
+	int getID()
+	{
+		return id;
+	}
 
 	void update();
 	void moveUp();

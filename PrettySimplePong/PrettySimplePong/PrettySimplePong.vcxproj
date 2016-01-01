@@ -87,7 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ArtificalPaddle.cpp" />
+    <ClCompile Include="ArtificialPaddle.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="CollisionHandler.cpp" />
     <ClCompile Include="GameObjects.cpp" />
@@ -111,7 +111,7 @@
     <ClCompile Include="ScoreBoard.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArtificalPaddle.h" />
+    <ClInclude Include="ArtificialPaddle.h" />
     <ClInclude Include="Ball.h" />
     <ClInclude Include="CollisionHandler.h" />
     <ClInclude Include="Constants.h" />

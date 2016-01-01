@@ -12,9 +12,54 @@ private:
 	ICommand* moveLeftUp;
 	ICommand* moveLeftDown;
 	ICommand* noCommand;
+	int id;
 public:
+	int getID()
+	{
+		return id;
+	}
+	void setID(int otherID)
+	{
+		id = otherID;
+	}
 	InputHandler();
 	~InputHandler();
+	ICommand* getMoveDown()
+	{
+		return moveDown;
+	}
+	ICommand* getMoveUp()
+	{
+		return moveUp;
+	}
+	ICommand* getMoveLeft()
+	{
+		return moveLeft;
+	}
+	ICommand* getNoCommand()
+	{
+		return noCommand;
+	}
+	ICommand* getMoveRight()
+	{
+		return moveRight;
+	}
+	ICommand* getMoveDownLeft()
+	{
+		return moveLeftDown;
+	}
+	ICommand* getMoveDownRight()
+	{
+		return moveRightDown;
+	}
+	ICommand* getMoveUpLeft()
+	{
+		return moveLeftUp;
+	}
+	ICommand* getMoveUpRight()
+	{
+		return moveRightUp;
+	}
 	void setMoveRight(ICommand* command)
 	{
 		moveRight = command;

@@ -1,5 +1,5 @@
 #include "Ball.h"
-#include <iostream>
+//#include <iostream>
 #include "CollisionHandler.h"
 Ball::~Ball()
 {
@@ -19,7 +19,8 @@ void Ball::update()
 	}
 	ApplyFriction();
 	CheckVelocities();
-	std::cout << velocity.x << " " << velocity.y << " \n";
+	NotifyBallMove();
+	//std::cout << velocity.x << " " << velocity.y << " \n";
 
 }
 
@@ -99,7 +100,10 @@ bool Ball::handleWallCollision(sf::Vector2<double> calculatedVelocity)
 }
 void Ball::NotifyBallMove()
 {
-
+	for (auto iterator = ballObservers.begin(); iterator != ballObservers.end(); iterator++)
+	{
+		(*iterator)->onNotify(this);
+	}
 }
 void Ball::NotifyWallHit(Constants::WallSide hit)
 {

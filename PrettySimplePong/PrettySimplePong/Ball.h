@@ -21,10 +21,10 @@ private:
 	void CheckVelocities();
 public:
 
-	Ball()
+	Ball(double startX, double startY)
 	{
 		CircleShape::setOrigin(Constants::BALLSIZE, Constants::BALLSIZE);
-		CircleShape::setPosition(Constants::START_X, Constants::START_Y);
+		CircleShape::setPosition(startX, startY);
 		
 		CircleShape::setRadius(Constants::BALLSIZE);
 		velocity.x = Constants::BALL_VELOCITY_X;
@@ -36,6 +36,22 @@ public:
 	void setCollisionHandler(CollisionHandler& handler)
 	{
 		collisionHandler = &handler;
+	}
+	void addBallObserver(IBallObserver& observer)
+	{
+		ballObservers.push_back(&observer);
+	}
+	void removeWallObserver(IBallObserver& observer)
+	{
+		for (auto iterator = ballObservers.begin(); iterator != ballObservers.end(); iterator++)
+		{
+			if ((*iterator) == &observer)
+			{
+				ballObservers.erase(iterator);
+			}
+			break;
+		}
+
 	}
 	sf::Vector2<double> getVelocity()
 	{
