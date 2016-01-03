@@ -1,159 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Commands">
+    <Filter Include="Game">
+      <UniqueIdentifier>{f030809a-560a-4975-b284-18f826a2d309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Game\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Commands">
       <UniqueIdentifier>{dce0dd60-650f-4064-adea-a7b05d9a4004}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Commands">
+    <Filter Include="Commands\Commands Source">
       <UniqueIdentifier>{8268cc52-ce9c-4e5c-b211-cc5dfbc43a0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Commands Header">
+      <UniqueIdentifier>{64a0e8b3-dab7-4890-914b-da72ff2ba6f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens">
+      <UniqueIdentifier>{bc8df446-84fd-46f2-aedd-66b2a4cadc38}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Ball.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IUpdatable.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Paddle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ICommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IMovable.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MoveDownCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="MoveLeftCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="MoveRightCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="MoveUpCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="IWallObserver.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ScoreBoard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MoveRUCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="MoveLDCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="MoveLUCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="MoveRDCommand.cpp">
-      <Filter>Source Files\Commands</Filter>
+      <Filter>Commands\Commands Source</Filter>
     </ClCompile>
     <ClCompile Include="CollisionHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NoCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ArtificalPaddle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IBallObserver.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArtificialPaddle.cpp">
+      <Filter>Game\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IScreen.cpp">
+      <Filter>Game\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScreen.cpp">
+      <Filter>Screens</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IUpdatable.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Paddle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ICommand.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IMovable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveDownCommand.h">
-      <Filter>Header Files\Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveLeftCommand.h">
-      <Filter>Header Files\Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveRightCommand.h">
-      <Filter>Header Files\Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveUpCommand.h">
-      <Filter>Header Files\Commands</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IWallObserver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ScoreBoard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveLDCommand.h">
-      <Filter>Header Files\Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveLUCommand.h">
-      <Filter>Header Files\Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveRDCommand.h">
-      <Filter>Header Files\Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveRUCommand.h">
-      <Filter>Header Files\Commands</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CollisionHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NoCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArtificalPaddle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IBallObserver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArtificialPaddle.h">
+      <Filter>Game\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveDownCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveLDCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveLeftCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveLUCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveRDCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveRightCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveRUCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveUpCommand.h">
+      <Filter>Commands\Commands Header</Filter>
+    </ClInclude>
+    <ClInclude Include="IScreen.h">
+      <Filter>Game\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreen.h">
+      <Filter>Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
