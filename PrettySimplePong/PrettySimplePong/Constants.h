@@ -10,6 +10,8 @@ namespace Constants
 	const int BALL_MIN_VELOCITY = 4;
 	const int BALL_MAX_VELOCITY = 10;
 	const float FRICTION = .03;
+	const int GAME_SCREEN = 0;
+	const int MENU_SCREEN = 1;
 	const int PADDLE_VELOCITY_X = 6;
 	const int PADDLE_VELOCITY_Y = 6;
 	const int FRAMERATE = 12;

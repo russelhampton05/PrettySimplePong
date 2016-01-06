@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 #include "GameScreen.h"
-
+#include "MenuScreen.h"
 int main()
 { 
 	std::vector<IScreen*> screens;
@@ -12,9 +12,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(Constants::windowXSize, Constants::windowYSize), "PSPong");
 
 	GameScreen gameScreen;
-
+	MenuScreen menuScreen;
 	screens.push_back(&gameScreen);
-
+	screens.push_back(&menuScreen);
 	while (screen >= 0)
 	{
 		screen = screens[screen]->Run(window);

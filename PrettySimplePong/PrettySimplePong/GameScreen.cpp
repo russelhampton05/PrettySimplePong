@@ -38,8 +38,22 @@ while (window.isOpen())
 	sf::Event event;
 	while (window.pollEvent(event))
 	{
-		if (event.type == sf::Event::Closed)
-			window.close();
+		switch (event.type)
+		{
+		case sf::Event::Closed: 
+			window.close(); 
+			break;
+		case sf::Event::KeyPressed:
+			//access menu
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				return Constants::MENU_SCREEN;
+			}
+			break;
+
+		
+
+		}
 	}
 
 
@@ -60,7 +74,7 @@ while (window.isOpen())
 	if (!paused)
 	{
 
-		window.clear(sf::Color::Blue);
+		window.clear(sf::Color::Black);
 
 		ICommand* command = nullptr;
 		command = inputHandler.handleInput();

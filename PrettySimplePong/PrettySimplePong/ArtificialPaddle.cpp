@@ -24,7 +24,7 @@ void ArtificialPaddle::onNotify(const Ball* ball)
 	}
 	if (distanceToPaddle(closestBall->getPosition()) > distanceToPaddle(ball->getPosition()))
 	{
-		std::cout << "Change ball \n";
+//		std::cout << "Change ball \n";
 		closestBall = ball;
 	}
 }
