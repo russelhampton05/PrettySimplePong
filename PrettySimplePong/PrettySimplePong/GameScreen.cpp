@@ -14,13 +14,13 @@ time_t endTime;
 bool paused = false;
 sf::Font pauseFont;
 sf::Text pauseText;
-if (!pauseFont.loadFromFile("timesbd.ttf"))
-{
-	if (!pauseFont.loadFromFile("C:\Windows\Fonts\Times New Roman\timesbd.ttf"))
-	{
-		std::cout << "Failed to load font times new roman from  file timesbd.ttf \n Please put the in the same folder as the .exe or in C:\Windows\Fonts";
-	}
-}
+//if (!pauseFont.loadFromFile("timesbd.ttf"))
+//{
+//	if (!pauseFont.loadFromFile("C:\Windows\Fonts\Times New Roman\timesbd.ttf"))
+//	{
+//		std::cout << "Failed to load font times new roman from  file timesbd.ttf \n Please put the in the same folder as the .exe or in C:\Windows\Fonts";
+//	}
+//}
 
 pauseText.setFont(pauseFont);
 pauseText.setPosition(window.getSize().x/2, window.getSize().y/2);
