@@ -103,15 +103,15 @@
     <ClCompile Include="MenuScreen.cpp">
       <Filter>Screens</Filter>
     </ClCompile>
+    <ClCompile Include="menuChoices.cpp">
+      <Filter>Game\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
       <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IUpdatable.h">
-      <Filter>Game\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
       <Filter>Game\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Paddle.h">
@@ -180,5 +180,9 @@
     <ClInclude Include="MenuScreen.h">
       <Filter>Screens</Filter>
     </ClInclude>
+    <ClInclude Include="menuChoices.h">
+      <Filter>Game\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h" />
   </ItemGroup>
 </Project>

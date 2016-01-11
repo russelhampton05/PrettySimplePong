@@ -4,6 +4,7 @@
 #include "SFML\Graphics.hpp"
 class Ball;
 class Paddle;
+//
 class CollisionHandler
 { 
 

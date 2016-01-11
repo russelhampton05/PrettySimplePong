@@ -10,6 +10,7 @@ class Ball: public IUpdatable, public sf::CircleShape
 {
 private:
 	sf::Vector2<double> velocity;
+	double velocityMax;
 	std::vector<IWallObserver*> wallObservers;
 	std::vector<IBallObserver*> ballObservers;
 	CollisionHandler* collisionHandler;
@@ -21,16 +22,20 @@ private:
 	void CheckVelocities();
 public:
 
-	Ball(double startX, double startY)
+	Ball(double startX, double startY, double velocityMax)
 	{
 		CircleShape::setOrigin(Constants::BALLSIZE, Constants::BALLSIZE);
 		CircleShape::setPosition(startX, startY);
 		
 		CircleShape::setRadius(Constants::BALLSIZE);
-		velocity.x = Constants::BALL_VELOCITY_X;
-		velocity.y = Constants::BALL_VELOCITY_Y;
+		this->velocity.x =velocityMax;
+		this->velocity.y = velocityMax;
+		this->velocityMax = velocityMax;
+
 		
 	}
+
+	~Ball();
 	void update();
 
 	void setCollisionHandler(CollisionHandler& handler)
@@ -84,7 +89,7 @@ public:
 	}
 	
 	
-	~Ball();
+
 };
 
 

@@ -8,12 +8,13 @@ namespace Constants
 	const int BALL_VELOCITY_X = 5;
 	const int BALL_VELOCITY_Y = 4;
 	const int BALL_MIN_VELOCITY = 4;
-	const int BALL_MAX_VELOCITY = 10;
-	const float FRICTION = .03;
+	
+	const float FRICTION = .025;
 	const int GAME_SCREEN = 0;
+	const int RESET_GAMESCREEN = 2;
 	const int MENU_SCREEN = 1;
-	const int PADDLE_VELOCITY_X = 6;
-	const int PADDLE_VELOCITY_Y = 6;
+	const int PADDLE_VELOCITY_X = 8;
+	const int PADDLE_VELOCITY_Y = 8;
 	const int FRAMERATE = 12;
 	const int BALLSIZE = 15;
 	const int windowXSize = sf::VideoMode::getDesktopMode().width/3 * 2;
@@ -36,6 +37,7 @@ namespace Constants
 	const sf::Keyboard::Key MOVE_LEFT2 = sf::Keyboard::Key::A;
 	const sf::Keyboard::Key MOVE_RIGHT2 = sf::Keyboard::Key::D;
 	enum WallSide  { LEFT, RIGHT, UP, DOWN };
+	enum BackgroundColor {BLUE, BLACK, RED};
 }
 
 #endif

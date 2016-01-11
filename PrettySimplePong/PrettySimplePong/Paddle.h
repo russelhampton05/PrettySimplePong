@@ -1,10 +1,12 @@
 #pragma once
 #include "IUpdatable.h"
 #include "IMovable.h"
-
+class menuChoices;
 class CollisionHandler;
+
 class Paddle : public IUpdatable, public IMovable, public sf::RectangleShape
 {
+	//The paddle's velocity is constant. These flags represent which direction the paddle is currently moving.
 	struct PaddleMoving
 	{
 		bool moveUp = false;
@@ -39,38 +41,30 @@ class Paddle : public IUpdatable, public IMovable, public sf::RectangleShape
 private:
 
 	sf::Vector2<double> maxVelocity;
-	sf::Vector2<double> acceleration; 
-	sf::Vector2<double> friction;
 	sf::Vector2f paddleSize;
-	
+	Constants::WallSide paddleSide;
+
 	CollisionHandler* collisionHandler;
+	menuChoices* choices;
 	PaddleBoundry boundry;
 	PaddleMoving moving;
 	int id;
 
-	void setBoundry(Constants::WallSide paddleSide);
+	void setBoundry();
 	void checkBoundry();
 public:
-	Paddle(Constants::WallSide paddleSide)
+	Paddle(Constants::WallSide paddleSide, menuChoices& choices)
 	{
-		
+		this->choices = &choices;
 		maxVelocity.x = Constants::PADDLE_VELOCITY_X;
 		maxVelocity.y = Constants::PADDLE_VELOCITY_Y;
-		
+		this->paddleSide = paddleSide;
 
-		setBoundry(paddleSide);
+		setBoundry();
 	}
 	~Paddle();
 
-	
-	void setID(int id)
-	{
-		this->id = id;
-	}
-	int getID()
-	{
-		return id;
-	}
+
 
 	void update();
 	void moveUp();
@@ -82,6 +76,9 @@ public:
 	void moveRightUp();
 	void moveLeftUp();
 	void noCommand();
+	sf::Vector2<double> getVelocity();
+
+
 	sf::Vector2f getPaddleSize()
 	{
 		return paddleSize;
@@ -90,12 +87,22 @@ public:
 	{
 		return boundry;
 	}
-
-	sf::Vector2<double> getVelocity();
-
 	void setCollisionHandler(CollisionHandler& collisionHandler)
 	{
 		this->collisionHandler = &collisionHandler;
+	}
+	void setLength(double length)
+	{
+		paddleSize.y = length;
+		setBoundry();
+	}
+	void setID(int id)
+	{
+		this->id = id;
+	}
+	int getID()
+	{
+		return id;
 	}
 };
 

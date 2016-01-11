@@ -14,10 +14,11 @@
 #include "NoCommand.h"
 #include "MoveRightCommand.h"
 #include "InputHandler.h"
-
+#include "menuChoices.h"
 class GameScreen :
 	public IScreen
 { 
+	
 private:
 	MoveUpCommand moveUpCommand;
 	MoveDownCommand moveDownCommand;
@@ -31,11 +32,21 @@ private:
 	CollisionHandler collisionHandler;
 	GameObjects gameObjects;
 	InputHandler inputHandler;
+
+	sf::Color BGcolor;
+
+	menuChoices* choices;
+
+	void addBalls();
+	void setBGColor();
+	void addPaddles();
 public:
-	GameScreen()
-		:gameObjects(inputHandler)
+	GameScreen(menuChoices& choices)
+		:gameObjects(inputHandler, choices)
 	{
-		inputHandler.setID(1);
+		this->choices = &choices;
+
+		inputHandler.setID(0);
 		inputHandler.setMoveDown(&moveDownCommand);
 		inputHandler.setMoveUp(&moveUpCommand);
 		inputHandler.setMoveLeft(&moveLeftCommand);
@@ -48,12 +59,9 @@ public:
 
 
 
-
-
-		gameObjects.addBall(30, 40);
-		gameObjects.addBall(40, 300);
-		gameObjects.addPlayerPaddle(Constants::LEFT, 1);
-		gameObjects.addAiPaddle(Constants::RIGHT);
+		setBGColor();
+		addBalls();
+		addPaddles();
 	}
 	~GameScreen();
 	int Run(sf::RenderWindow &window);

@@ -1,5 +1,4 @@
 #include "Ball.h"
-//#include <iostream>
 #include "CollisionHandler.h"
 Ball::~Ball()
 {
@@ -15,12 +14,10 @@ void Ball::update()
 	if (!wallCollisionOccured)
 	{
 		setPosition(getPosition().x + velocity.x, getPosition().y + velocity.y);
-		//std::cout << getPosition().x << " " << getPosition().y << "\n";
 	}
 	ApplyFriction();
 	CheckVelocities();
 	NotifyBallMove();
-	//std::cout << velocity.x << " " << velocity.y << " \n";
 
 }
 
@@ -120,9 +117,9 @@ void Ball::CheckVelocities()
 		{
 			velocity.x = Constants::BALL_MIN_VELOCITY;
 		}
-		else if (velocity.x > Constants::BALL_MAX_VELOCITY)
+		else if (velocity.x >velocityMax)
 		{
-			velocity.x = Constants::BALL_MAX_VELOCITY;
+			velocity.x = velocityMax;
 		}
 	}
 	else if (velocity.x < 0)
@@ -132,9 +129,9 @@ void Ball::CheckVelocities()
 		{
 			velocity.x = Constants::BALL_MIN_VELOCITY*-1;
 		}
-		else if ((velocity.x)*-1 > Constants::BALL_MAX_VELOCITY)
+		else if ((velocity.x)*-1 > velocityMax)
 		{
-			velocity.x = Constants::BALL_MAX_VELOCITY*-1;
+			velocity.x = velocityMax*-1;
 		}
 
 	}
@@ -144,9 +141,9 @@ void Ball::CheckVelocities()
 		{
 			velocity.y = Constants::BALL_MIN_VELOCITY;
 		}
-		else if (velocity.y > Constants::BALL_MAX_VELOCITY)
+		else if (velocity.y > velocityMax)
 		{
-			velocity.y = Constants::BALL_MAX_VELOCITY;
+			velocity.y = velocityMax;
 		}
 	}
 	else if (velocity.y < 0)
@@ -155,9 +152,9 @@ void Ball::CheckVelocities()
 		{
 			velocity.y = Constants::BALL_MIN_VELOCITY*-1;
 		}
-		else if (velocity.y*-1 > Constants::BALL_MAX_VELOCITY)
+		else if (velocity.y*-1 > velocityMax)
 		{
-			velocity.y = Constants::BALL_MAX_VELOCITY*-1;
+			velocity.y = velocityMax*-1;
 		}
 	}
 }

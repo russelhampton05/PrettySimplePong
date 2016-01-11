@@ -16,7 +16,8 @@ void ScoreBoard::initializeText(sf::Text& score, int x)
 	
 	score.setString("0");
 	score.setFont(textFont);
-	score.setPosition((Constants::windowXSize /2) + x, 10);
+	//This 10 was deemed ok to leave as a "magic number" because it doesn't need to change based on screen size
+	score.setPosition((Constants::windowXSize /2) + x, 10); 
 	score.setCharacterSize(Constants::TEXT_SIZE);
 	score.setColor(sf::Color::White);
 

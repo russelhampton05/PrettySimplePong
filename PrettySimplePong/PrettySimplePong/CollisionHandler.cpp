@@ -11,8 +11,10 @@ CollisionHandler::~CollisionHandler()
 {
 }
 
+//After a collision the ball will gain velocity based on paddle velocity.
 sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball) 
 {
+	//gather data
 	float ballX = ball->getPosition().x; 
 	float ballY = ball->getPosition().y;
 	double ballVelocityX = ball->getVelocity().x;
@@ -21,6 +23,7 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 	sf::Vector2<double> returnVelocity;
 	returnVelocity.x = ballVelocityX;
 	returnVelocity.y = ballVelocityY;
+
 	for (auto paddle = paddles.begin(); paddle != paddles.end(); paddle++) 
 	{
 		double paddleWidth = (*paddle)->getPaddleSize().x;
@@ -30,12 +33,12 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 		double paddleVelocityX = (*paddle)->getVelocity().x;
 		double paddleVelocityY = (*paddle)->getVelocity().y;
 
-		//Set ball position to on the paddle and then return the remaining velocity to the ball for handling
+		//Set ball position to on the paddle and then return the remaining velocity to the ball for handling by the ball
 		switch ((*paddle)->getBoundry().side) 
 		{
 			case Constants::WallSide::LEFT :
 			case Constants::WallSide::RIGHT:
-				
+				//determines what side of the paddle we're on
 				if (ballVelocityX < 0 && ballX>paddleX)
 				{
 					if ((ballX + ballVelocityX - ballRadius) < (paddleX + paddleWidth) && (ballY - ballVelocityY - Constants::BALLSIZE) < (paddleY + paddleLength)
@@ -54,14 +57,13 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 						//new ball velocity
 						sf::Vector2<double> newBallVelocity;
 
-						newBallVelocity.x = (ballVelocityX*-1);
+						newBallVelocity.x = (ballVelocityX *-1);
 						if (paddleVelocityX > 0)
 						{
 							newBallVelocity.x += paddleVelocityX;
 						}
 						newBallVelocity.y = ballVelocityY + paddleVelocityY;
 						ball->setVelocity(newBallVelocity);
-						
 					}
 				}
 				else if (ballVelocityX > 0 && ballX < paddleX)
@@ -88,7 +90,8 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 						}
 						newBallVelocity.y = ballVelocityY + paddleVelocityY;
 						ball->setVelocity(newBallVelocity);
-
+						
+					
 					}
 				}
 				break;
@@ -100,6 +103,7 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 	return returnVelocity;
 }
 
+//General behavior is that the paddle is immovable. The paddle's velocity will never be impacted by the ball collisions.
 bool CollisionHandler::checkCollision(Paddle* paddle)
 {
 	bool collisionOccured = false;
@@ -124,8 +128,18 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 					ballY + Constants::BALLSIZE > paddleY + paddleVelocity.y)
 				{
 					collisionOccured = true;
+
+					//Set the ball's position to where the paddle will end up at the end of its frame.
+
 					(*ball)->setPosition(paddleX + Constants::PADDLE_WIDTH + paddleVelocity.x + Constants::BALLSIZE, ballY);
-					ballVelocity.x = (-1*ballVelocity.x) + paddleVelocity.x;
+					if (ballVelocity.x > 0)
+					{
+						ballVelocity.x = (ballVelocity.x) + paddleVelocity.x;
+					}
+					else
+					{
+						ballVelocity.x = (-1 * ballVelocity.x) + paddleVelocity.x;
+					}
 					ballVelocity.y = ballVelocity.y + paddleVelocity.y;
 					(*ball)->setVelocity(ballVelocity);
 				}
@@ -137,10 +151,21 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 					ballY + Constants::BALLSIZE > paddleY + paddleVelocity.y)
 				{
 					collisionOccured = true;
-					(*ball)->setPosition(paddleX + paddleVelocity.x - Constants::BALLSIZE, ballY);
-					ballVelocity.x = (-1 * ballVelocity.x) + paddleVelocity.x;
+
+					//Set the ball's position to where the paddle will end up at the end of its frame.
+
+					(*ball)->setPosition(paddleX + paddleVelocity.x - Constants::BALLSIZE, ballY) ;
+					if (ballVelocity.x < 0)
+					{
+						ballVelocity.x = (ballVelocity.x) + paddleVelocity.x;
+					}
+					else
+					{
+						ballVelocity.x = (-1 * ballVelocity.x) + paddleVelocity.x;
+					}
 					ballVelocity.y = ballVelocity.y + paddleVelocity.y;
 					(*ball)->setVelocity(ballVelocity);
+					
 				}
 			}
 		}

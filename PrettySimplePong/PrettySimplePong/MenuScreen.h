@@ -3,9 +3,11 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "menuChoices.h"
 class MenuScreen :
 	public IScreen
 {
+	//information holding class. Represents an item on the menu.
 	class MenuItem
 	{
 	private:
@@ -13,6 +15,7 @@ class MenuScreen :
 		std::string stringValue;
 		double value;
 		sf::Text text;
+		int *assignedValue;
 
 	public:
 		MenuItem()
@@ -20,6 +23,20 @@ class MenuScreen :
 			selected = false;
 			stringValue = "";
 			value = 0.0;
+			assignedValue = nullptr;
+			text.setCharacterSize(16);
+		}
+		void setValue(double other)
+		{
+			value = other;
+		}
+		void setAssignedValue(int& value)
+		{
+			assignedValue = &value;
+		}
+		void applyAssignedValue()
+		{
+			*assignedValue = value;
 		}
 		bool getSelected()
 		{
@@ -73,25 +90,42 @@ private:
 	void moveRight();
 	void moveLeft();
 	void handleInput(sf::Keyboard::Key);
+	
+	std::vector<std::vector<MenuItem>> menuItems;
+
+	
+ menuChoices choices;
+
 public:
 	MenuScreen();
 	~MenuScreen();
-	std::vector<std::vector<MenuItem>> menuItems;
-	void addColumn(std::string stringValue)
+
+	menuChoices& getChoices()
+	{
+		return choices;
+	}
+	//target is the menuChoice value which is bound
+	void addColumn(std::string stringValue, int& target, int value)
 	{
 		MenuItem newItem;
 		newItem.getText().setFont(font);
+		newItem.setAssignedValue(target);
+		
+		newItem.setValue(value);
+
 		newItem.setString(stringValue);
 		std::vector<MenuItem> newColumn;
 		newColumn.push_back(newItem);
 		menuItems.push_back(newColumn);
 	}
-	void addRow(std::string columnName,  std::string text)
+	//Searches for column and then adds itself to it. 
+	void addRow(std::string columnName, std::string text, int& target, int value)
 	{
 		MenuItem item;
 		item.setString(text);
-		
+		item.setAssignedValue(target);
 		item.getText().setFont(font);
+		item.setValue(value);
 
 		for (auto column = menuItems.begin(); column != menuItems.end(); column++)
 		{

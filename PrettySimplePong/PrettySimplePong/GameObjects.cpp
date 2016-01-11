@@ -1,16 +1,17 @@
 #include "GameObjects.h"
 #include "ICommand.h"
 #include "InputHandler.h"
-
+#include "menuChoices.h"
 
 GameObjects::~GameObjects()
 {
 	deleteObjects();
 }
 
-void GameObjects::addPlayerPaddle(Constants::WallSide side, int ID)
+void GameObjects::addPlayerPaddle(Constants::WallSide side, int ID,double length)
 {
-	Paddle* newPaddle = new Paddle(side);
+	Paddle* newPaddle = new Paddle(side, *choices);
+	newPaddle->setLength(length);
 	newPaddle->setCollisionHandler(collisionHandler);
 	collisionHandler.registerPaddle(*newPaddle);
 	newPaddle->setID(ID);
@@ -28,9 +29,9 @@ void GameObjects::giveCommand(int ID, ICommand& command)
 		}
 	}
 }
-void GameObjects::addBall(double x, double y)
+void GameObjects::addBall(double x, double y, double velocity)
 {
-	Ball* newBall = new Ball(x,y);
+	Ball* newBall = new Ball(x,y, velocity);
 	newBall->setCollisionHandler(collisionHandler);
 	collisionHandler.registerBall(*newBall);
 	newBall->addWallObserver(scoreBoard);
@@ -42,10 +43,11 @@ void GameObjects::addBall(double x, double y)
 	updateObjects.push_back(newBall);
 	balls.push_back(newBall);
 }
-void GameObjects::addAiPaddle(Constants::WallSide side)
+void GameObjects::addAiPaddle(Constants::WallSide side, double length)
 {
 	ArtificialPaddle* newAi = new ArtificialPaddle(*commands);
-	Paddle* newPaddle = new Paddle(side);
+	Paddle* newPaddle = new Paddle(side, *choices);
+	newPaddle->setLength(length);
 	newPaddle->setCollisionHandler(collisionHandler);
 	collisionHandler.registerPaddle(*newPaddle);
 	

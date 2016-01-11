@@ -11,34 +11,38 @@ MenuScreen::MenuScreen()
 			std::cout << "Failed to load font times new roman from  file timesbd.ttf \n Please put the in the same folder as the .exe or in C:\Windows\Fonts";
 		}
 	}
-
-	addColumn("Ball Count");
-	addColumn("Ball Speed");
-	addColumn("Paddle Side");
-	addColumn("Background Color");
-	addColumn("Restart");
-	addColumn("Exit");
-
-	addColumn("Press P at any time to pause and ESC to access or leave menu");
 	
+	addColumn("Ball Count", choices.blankTarget, -1);
+	addColumn("Ball Speed", choices.blankTarget, -1);
+	addColumn("Paddle Side", choices.blankTarget, -1);
+	addColumn("Paddle Size", choices.blankTarget, -1);
+	addColumn("Background Color", choices.blankTarget, -1);
+	addColumn("Start/Restart", choices.start, 0);
+	addColumn("Exit ",choices.exit, 0);
+	
+	addColumn("Press P at any time to pause and ESC to access or leave menu \n Arrow keys move the paddle. Highlight start or exit and press enter to select.",choices.blankTarget, -1);
+	
+	addRow("Paddle Size", "80", choices.paddleSize, 80);
+	addRow("Paddle Size", "120",choices.paddleSize, 120);
+	addRow("Paddle Size", "160", choices.paddleSize, 160);
 
-	addRow("Background Color", "Blue");
-	addRow("Background Color", "Black");
-	addRow("Background Color", "Red");
+	addRow("Background Color", "Blue", choices.bgColor,0);
+	addRow("Background Color", "Black", choices.bgColor,1);
+	addRow("Background Color", "Red", choices.bgColor,2);
 
-	addRow("Paddle Side", "Left");
-	addRow("Paddle Side", "Right");
+	addRow("Paddle Side", "Left",choices.paddleSide, 0);
+	addRow("Paddle Side", "Right", choices.paddleSide, 1);
 
-	addRow("Ball Speed", "10");
-	addRow("Ball Speed", "15");
-	addRow("Ball Speed", "20");
-	addRow("Ball Speed", "25");
+	addRow("Ball Speed", "10", choices.ballSpeed, 10);
+	addRow("Ball Speed", "12", choices.ballSpeed, 12);
+	addRow("Ball Speed", "14", choices.ballSpeed, 14);
+	addRow("Ball Speed", "16", choices.ballSpeed, 16);
 
 
-	addRow("Ball Count", "1");
-	addRow("Ball Count", "2");
-	addRow("Ball Count", "3");
-	addRow("Ball Count", "4");
+	addRow("Ball Count", "1", choices.numBalls, 1);
+	addRow("Ball Count", "2", choices.numBalls, 2);
+	addRow("Ball Count", "3", choices.numBalls, 3);
+	addRow("Ball Count", "4", choices.numBalls, 4);
 	
 	menuItems[0][0].setSelected(true);
 
@@ -62,6 +66,7 @@ int MenuScreen::Run(sf::RenderWindow &window)
 	sf::Event event;
 	while (window.isOpen())
 	{
+		//SFML ques up events. This goes through all of them and checks for button presses or window closes.
 		while (window.pollEvent(event))
 		{
 			switch (event.type)
@@ -74,6 +79,17 @@ int MenuScreen::Run(sf::RenderWindow &window)
 				if (event.key.code == sf::Keyboard::Escape)
 				{
 					return Constants::GAME_SCREEN;
+				}
+				else if (event.key.code == sf::Keyboard::Key::Return)
+				{
+					if (choices.start >= 0)
+					{
+						return Constants::RESET_GAMESCREEN;
+					}
+					else if (choices.exit >= 0)
+					{
+						exit(1);
+					}	
 				}
 				else
 				{
@@ -113,8 +129,12 @@ void MenuScreen::draw(sf::RenderWindow &window)
 	}
 }
 
+//as input is detected, we check to see where our menu currently is and then
+//update highlighter position as well as apply the relevent values to the menu choices class.
 void MenuScreen::handleInput(sf::Keyboard::Key key)
 {
+	choices.start = -1;
+	choices.exit = -1;
 	switch (key)
 	{
 	case sf::Keyboard::Key::Up: moveUp(); break;
@@ -134,6 +154,8 @@ void MenuScreen::moveUp()
 				(*column)[0].setSelected(false);
 				--column;
 				(*column)[0].setSelected(true);
+				(*column)[0].applyAssignedValue();
+				
 				break;
 			}
 		}
@@ -141,6 +163,7 @@ void MenuScreen::moveUp()
 }
 void MenuScreen::moveDown()
 {
+
 	for (auto column = menuItems.begin(); column != menuItems.end(); column++)
 	{
 		if ((*column)[0].getSelected())
@@ -150,6 +173,7 @@ void MenuScreen::moveDown()
 				(*column)[0].setSelected(false);
 				++column;
 				(*column)[0].setSelected(true);
+				(*column)[0].applyAssignedValue();
 				break;
 			}
 		}
@@ -170,6 +194,7 @@ void MenuScreen::moveRight()
 						row->setSelected(false);
 						++row;
 						row->setSelected(true);
+						row->applyAssignedValue();
 					}
 				}
 			}
@@ -191,6 +216,7 @@ void MenuScreen::moveLeft()
 						row->setSelected(false);
 						--row;
 						row->setSelected(true);
+						row->applyAssignedValue();
 					}
 				}
 			}

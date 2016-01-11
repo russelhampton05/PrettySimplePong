@@ -100,6 +100,7 @@
     <ClCompile Include="IUpdatable.cpp" />
     <ClCompile Include="IWallObserver.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menuChoices.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MoveDownCommand.cpp" />
     <ClCompile Include="MoveLDCommand.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="IScreen.h" />
     <ClInclude Include="IUpdatable.h" />
     <ClInclude Include="IWallObserver.h" />
+    <ClInclude Include="menuChoices.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="MoveDownCommand.h" />
     <ClInclude Include="MoveLDCommand.h" />

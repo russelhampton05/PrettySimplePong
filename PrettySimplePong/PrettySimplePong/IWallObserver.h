@@ -7,6 +7,5 @@ public:
 	~IWallObserver();
 
 	void virtual onNotify(Constants::WallSide) = 0;
-	//int id;
 };
 

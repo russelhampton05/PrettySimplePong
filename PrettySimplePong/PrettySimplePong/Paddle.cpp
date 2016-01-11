@@ -1,7 +1,7 @@
 #include "Paddle.h"
 
 #include "CollisionHandler.h"
-
+#include "menuChoices.h"
 
 Paddle::~Paddle()
 {
@@ -19,6 +19,7 @@ void Paddle::update()
 	//moving.setFalse();
 }
 
+//These functions control the moving flags to deteremine direction of paddle based on last input
 void Paddle::moveUp()
 {
 	
@@ -69,37 +70,38 @@ void Paddle::noCommand()
 	 moving.setFalse();
 }
 //Paddles can go on any side, so the math will be different accordingly.
-void Paddle::setBoundry(Constants::WallSide side)
+void Paddle::setBoundry()
 {
-	switch (side)
+	switch (paddleSide)
 	{
 	case::Constants::WallSide::LEFT:
 
 		setPosition((Constants::PADDLE_WIDTH / 2) + 5, Constants::windowYSize / 2);
 		paddleSize.x = Constants::PADDLE_WIDTH;
-		paddleSize.y = Constants::PADDLE_LENGTH;
+		paddleSize.y = paddleSize.y;
 		setSize(paddleSize);
 
 		boundry.maxX = (Constants::windowXSize / 2 - 10) - (Constants::PADDLE_WIDTH);
-		boundry.maxY = (Constants::windowYSize) - (Constants::PADDLE_LENGTH);
+		boundry.maxY = (Constants::windowYSize) - (choices->paddleSize);
 		boundry.minX = 0;
 		boundry.minY = 0;
-		boundry.side = side;
+		boundry.side = paddleSide;
 		break;
 	case::Constants::WallSide::RIGHT:
 
 		setPosition(Constants::windowXSize - (Constants::PADDLE_WIDTH / 2) - 5, Constants::windowYSize / 2);
 		paddleSize.x = Constants::PADDLE_WIDTH;
-		paddleSize.y = Constants::PADDLE_LENGTH;
+		paddleSize.y = paddleSize.y;
 		setSize(paddleSize);
 
 		boundry.maxX = Constants::windowXSize - Constants::PADDLE_WIDTH;
-		boundry.maxY = (Constants::windowYSize) - (Constants::PADDLE_LENGTH);
+		boundry.maxY = (Constants::windowYSize) - (choices->paddleSize);
 		boundry.minX = (Constants::windowXSize / 2 + 10) + (Constants::PADDLE_WIDTH);
 		boundry.minY = 0;
-		boundry.side = side;
+		boundry.side = paddleSide;
 	}
 }
+//this makes sure we dont have paddles running off screen.
 void Paddle::checkBoundry()
 {
 	float currentX = getPosition().x;
@@ -126,6 +128,7 @@ void Paddle::checkBoundry()
 
 }
 
+//Getting the paddle velocity involves knowing which command was previously given.
 sf::Vector2<double> Paddle::getVelocity()
 {
 
