@@ -46,7 +46,7 @@ void ArtificialPaddle::makeMove()
 	}
 	ICommand* command = nullptr;
 	sf::Vector2f paddlePosition = paddle->getPosition();
-	paddlePosition.y = paddlePosition.y + Constants::PADDLE_LENGTH / 2; //adjust to center of paddle
+	paddlePosition.y = paddlePosition.y + paddle->getPaddleSize().y / 2; //adjust to center of paddle
 	sf::Vector2f ballPosition = closestBall->getPosition();
 
 	if (paddlePosition.y - 5> ballPosition.y + Constants::BALLSIZE)

@@ -64,7 +64,7 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 						newBallVelocity.y = ballVelocityY + paddleVelocityY;
 						ball->setVelocity(newBallVelocity);
 
-					
+						
 					}
 				}
 				else if (ballVelocityX > 0 && ballX < paddleX)
@@ -90,8 +90,7 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 						
 						newBallVelocity.y = ballVelocityY + paddleVelocityY;
 						ball->setVelocity(newBallVelocity);
-						
-						
+					
 					}
 				}
 				break;
@@ -109,6 +108,7 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 	bool collisionOccured = false;
 	double paddleX = paddle->getPosition().x;
 	double paddleY = paddle->getPosition().y;
+	double paddleSizeY = paddle->getPaddleSize().y;
 	sf::Vector2<double> paddleVelocity = paddle->getVelocity();
 	for (auto ball = balls.begin(); ball != balls.end(); ball++)
 	{
@@ -124,7 +124,7 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 			if (paddleVelocity.x > 0 && paddleX < ballX)
 			{
 				if ((paddleX + Constants::PADDLE_WIDTH + paddleVelocity.x > ballX - Constants::BALLSIZE) &&
-					ballY - Constants::BALLSIZE < (paddleY + Constants::PADDLE_LENGTH + paddleVelocity.y) &&
+					ballY - Constants::BALLSIZE < (paddleY + paddleSizeY + paddleVelocity.y) &&
 					ballY + Constants::BALLSIZE > paddleY + paddleVelocity.y)
 				{
 					collisionOccured = true;
@@ -143,13 +143,13 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 					ballVelocity.y = ballVelocity.y + paddleVelocity.y;
 					(*ball)->setVelocity(ballVelocity);
 
-					
+				
 				}
 			}
 			else if (paddleVelocity.x < 0 && paddleX > ballX)
 			{
 				if (paddleX + paddleVelocity.x < (ballX + Constants::BALLSIZE) &&
-					ballY - Constants::BALLSIZE < (paddleY + Constants::PADDLE_LENGTH + paddleVelocity.y) &&
+					ballY - Constants::BALLSIZE < (paddleY + paddleSizeY + paddleVelocity.y) &&
 					ballY + Constants::BALLSIZE > paddleY + paddleVelocity.y)
 				{
 					collisionOccured = true;
@@ -167,7 +167,7 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 					}
 					ballVelocity.y = ballVelocity.y + paddleVelocity.y;
 					(*ball)->setVelocity(ballVelocity);
-				
+					
 				}
 			}
 		}
