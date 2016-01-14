@@ -32,7 +32,8 @@ private:
 	CollisionHandler collisionHandler;
 	GameObjects gameObjects;
 	InputHandler inputHandler;
-
+	sf::Font pauseFont;
+	sf::Text pauseText;
 	sf::Color BGcolor;
 
 	menuChoices* choices;
@@ -57,7 +58,13 @@ public:
 		inputHandler.setMoveRightDown(&moveRightDownCommand);
 		inputHandler.setNoCommand(&noCommand);
 
-
+		if (!pauseFont.loadFromFile("timesbd.ttf"))
+		{
+			if (!pauseFont.loadFromFile("C:\Windows\Fonts\Times New Roman\timesbd.ttf"))
+			{
+				std::cout << "Failed to load font times new roman from  file timesbd.ttf \n Please put the in the same folder as the .exe or in C:\Windows\Fonts";
+			}
+		}
 
 		setBGColor();
 		addBalls();

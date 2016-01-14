@@ -12,15 +12,8 @@ time_t startTime;
 time_t endTime;
 
 bool paused = false;
-sf::Font pauseFont;
-sf::Text pauseText;
-//if (!pauseFont.loadFromFile("timesbd.ttf"))
-//{
-//	if (!pauseFont.loadFromFile("C:\Windows\Fonts\Times New Roman\timesbd.ttf"))
-//	{
-//		std::cout << "Failed to load font times new roman from  file timesbd.ttf \n Please put the in the same folder as the .exe or in C:\Windows\Fonts";
-//	}
-//}
+
+
 
 pauseText.setFont(pauseFont);
 pauseText.setPosition(window.getSize().x/2, window.getSize().y/2);
@@ -53,7 +46,7 @@ while (window.isOpen())
 		}
 	}
 
-	window.clear(BGcolor);
+	
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
 	{
@@ -62,7 +55,7 @@ while (window.isOpen())
 		std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		if (paused)
 		{
-			
+			window.clear(BGcolor);
 			window.draw(pauseText);
 			
 			window.display();
@@ -72,6 +65,7 @@ while (window.isOpen())
 
 	if (!paused)
 	{
+		window.clear(BGcolor);
 		//with the way it is currently set up, you need one input handler per set of key assignments to commands.
 		//Right now it's a one player game so this isn't as important. The input handler could also be set to multiple game objects easily.
 		ICommand* command = nullptr;

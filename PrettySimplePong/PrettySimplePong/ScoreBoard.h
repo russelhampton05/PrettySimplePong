@@ -28,8 +28,8 @@ public:
 			}
 		}
 	
-		initializeText(leftScore, -10);
-		initializeText(rightScore, 10);
+		initializeText(leftScore, -30);
+		initializeText(rightScore, 30);
 		leftCount = 0;
 		rightCount = 0;
 

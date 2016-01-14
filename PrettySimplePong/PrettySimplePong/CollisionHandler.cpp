@@ -25,7 +25,7 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 	returnVelocity.y = ballVelocityY;
 
 	for (auto paddle = paddles.begin(); paddle != paddles.end(); paddle++) 
-	{
+	{	
 		double paddleWidth = (*paddle)->getPaddleSize().x;
 		double paddleLength = (*paddle)->getPaddleSize().y;
 		double paddleX = (*paddle)->getPosition().x;
@@ -58,9 +58,10 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 						sf::Vector2<double> newBallVelocity;
 
 						newBallVelocity.x = (ballVelocityX *-1);
-						
-						newBallVelocity.x += paddleVelocityX;
-						
+						if (paddleVelocityX > 0)
+						{
+							newBallVelocity.x += paddleVelocityX;
+						}
 						newBallVelocity.y = ballVelocityY + paddleVelocityY;
 						ball->setVelocity(newBallVelocity);
 
@@ -85,8 +86,11 @@ sf::Vector2<double> CollisionHandler::checkCollision(Ball* ball)
 						//new ball velocity
 						sf::Vector2<double> newBallVelocity;
 						newBallVelocity.x = (ballVelocityX*-1);
-						
-						newBallVelocity.x += paddleVelocityX;
+						if (paddleVelocityX < 0)
+						{
+							newBallVelocity.x += paddleVelocityX;
+						}
+					
 						
 						newBallVelocity.y = ballVelocityY + paddleVelocityY;
 						ball->setVelocity(newBallVelocity);
@@ -109,10 +113,10 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 	double paddleX = paddle->getPosition().x;
 	double paddleY = paddle->getPosition().y;
 	double paddleSizeY = paddle->getPaddleSize().y;
+	
 	sf::Vector2<double> paddleVelocity = paddle->getVelocity();
 	for (auto ball = balls.begin(); ball != balls.end(); ball++)
 	{
-	
 		double ballX = (*ball)->getPosition().x;
 		double ballY = (*ball)->getPosition().y;
 		sf::Vector2<double> ballVelocity = (*ball)->getVelocity();
@@ -171,7 +175,7 @@ bool CollisionHandler::checkCollision(Paddle* paddle)
 				}
 			}
 		}
-		break;
+		
 
 	}
 

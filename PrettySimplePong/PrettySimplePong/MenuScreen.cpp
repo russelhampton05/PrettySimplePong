@@ -43,6 +43,7 @@ MenuScreen::MenuScreen()
 	addRow("Ball Count", "2", choices.numBalls, 2);
 	addRow("Ball Count", "3", choices.numBalls, 3);
 	addRow("Ball Count", "4", choices.numBalls, 4);
+	addRow("Ball Count", "Kyle's Mode", choices.numBalls, 15);
 	
 	menuItems[0][0].setSelected(true);
 
