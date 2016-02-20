@@ -20,7 +20,7 @@ MenuScreen::MenuScreen()
 	addColumn("Start/Restart", choices.start, 0);
 	addColumn("Exit ",choices.exit, 0);
 	
-	addColumn("Press P at any time to pause and ESC to access or leave menu \n Arrow keys move the paddle. Highlight start or exit and press enter to select.",choices.blankTarget, -1);
+	addColumn("Press P at any time to pause and ESC to access or leave menu \n Arrow keys move the paddle (up,down,left.right). Highlight start or exit and press enter to select.",choices.blankTarget, -1);
 	
 	addRow("Paddle Size", "80", choices.paddleSize, 80);
 	addRow("Paddle Size", "120",choices.paddleSize, 120);
