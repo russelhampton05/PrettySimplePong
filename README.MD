@@ -23,8 +23,8 @@ _\ \ | | | | | | |_) | |  __/_
 
 Disclaimer:
 
-This was written using a student's copy of Visual Studio 2013 and the SFML libraries for the GUI. It is my own
-whole work. This was written during my first semester senior year of my computer science degree. Written in the
+This was written using a student's copy of Visual Studio 2013 and the SFML libraries for the GUI. 
+It is my own whole work. This was written during my first semester senior year of my computer science degree. Written in the
 winter of 2015.
 
 This code is free for anyone to use in any way.
